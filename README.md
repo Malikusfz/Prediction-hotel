@@ -1,155 +1,148 @@
-# Hotel Booking Classification
-
+# Hotel Booking Analysis: Machine Learning Project
 ![Python](https://img.shields.io/badge/Python-3.7%2B-blue)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-Latest-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Author](https://img.shields.io/badge/Author-Malikus%20Syafaadi%20Nurfaza-blue)
 
-## Overview 🎯
+## Overview 
+This project implements advanced machine learning techniques to analyze hotel booking patterns, providing valuable insights for the hospitality industry. Part of the IDCamp Machine Learning program by Dicoding, this analysis combines clustering and classification approaches to understand and predict customer booking behaviors.
 
-This project implements advanced machine learning models to classify and predict hotel booking patterns. Using state-of-the-art classification algorithms and comprehensive data analysis, we aim to provide valuable insights into booking behaviors and enhance decision-making in the hospitality industry.
+### Project Objectives
+1. Segment hotel customers using unsupervised learning techniques
+2. Develop predictive models for booking pattern classification
+3. Extract actionable business insights from the analysis
 
-### Key Features ✨
+## Methodology
 
-- **Multiple Classification Algorithms**
-  - Random Forest Classifier
-  - Logistic Regression
-  - Support Vector Machine (SVM)
-- **Robust Model Evaluation**
-  - Cross-validation implementation
-  - Comprehensive performance metrics
-  - Model comparison analysis
-- **Data Processing Pipeline**
-  - Advanced preprocessing techniques
+### 1. Data Analysis and Preprocessing
+- Dataset: Hotel Booking Demand dataset from Kaggle
+- Features: Both categorical (hotel type, customer type) and numerical (lead time, ADR)
+- Preprocessing steps:
+  - Data cleaning and normalization
   - Feature engineering
-  - Data validation and cleaning
+  - Handling missing values
+  - Encoding categorical variables
 
-## Technical Architecture 🏗️
+### 2. Clustering Analysis
+#### Implementation
+- Algorithm: K-Means Clustering
+- Validation: Silhouette Score Analysis
+- Feature Selection: Focused on booking behavior indicators
 
-### Classification Models
+#### Results
+- **Silhouette Score: 0.58** (exceeding requirement of 0.55)
+- **Identified Clusters:**
+  - Cluster 0 (36,107 bookings): Budget-conscious travelers
+    * Short lead times
+    * Lower ADR
+    * Minimal special requests
+  - Cluster 1 (50,548 bookings): Premium guests
+    * Extended lead times
+    * Higher ADR
+    * Multiple special requests
 
-#### 1. Random Forest Classifier
-- Ensemble learning with multiple decision trees
-- Feature importance analysis
-- Robust against overfitting
-- Excellent for handling non-linear relationships
+### 3. Classification Analysis
+#### Model Development
+Implemented three different algorithms:
+1. **Random Forest Classifier**
+   - Ensemble learning approach
+   - Optimal for complex patterns
+   - Feature importance ranking
 
-#### 2. Logistic Regression
-- Probabilistic classification approach
-- Linear decision boundary optimization
-- High interpretability
-- Efficient for large datasets
+2. **Logistic Regression**
+   - Baseline linear model
+   - Interpretable results
+   - Efficient computation
 
-#### 3. Support Vector Machine (SVM)
-- Kernel-based classification
-- Optimal hyperplane calculation
-- Effective in high-dimensional spaces
-- Strong theoretical guarantees
+3. **Support Vector Machine**
+   - Non-linear classification
+   - Kernel-based approach
+   - High-dimensional handling
 
-## Performance Metrics 📊
+#### Performance Metrics
 
-| Metric | Description |
-|--------|-------------|
-| Accuracy | Overall prediction accuracy |
-| F1 Score | Harmonic mean of precision and recall |
-| Precision | True positive rate |
-| Recall | Positive predictive value |
-| ROC-AUC | Area under ROC curve |
+| Model | Accuracy | F1-Score | Precision | Recall |
+|-------|----------|----------|-----------|---------|
+| Random Forest | 100.00% | 100.00% | 100.00% | 100.00% |
+| Logistic Regression | 99.99% | 99.99% | 100.00% | 99.99% |
+| SVM | 99.91% | 99.91% | 99.91% | 99.91% |
 
-## Installation 🚀
+*All models exceeded the minimum requirement of 87% accuracy*
 
-### Prerequisites
-- Python 3.7 or higher
-- pip package manager
+## Key Findings and Business Insights
 
-### Setup
+### 1. Customer Segmentation
+- Clear distinction between budget and premium segments
+- Booking lead time strongly correlates with spending patterns
+- Special requests indicate customer value potential
+
+### 2. Predictive Patterns
+- Advance bookings typically indicate higher revenue
+- Weekend stays show distinct behavioral patterns
+- Seasonal trends affect booking preferences
+
+### 3. Business Recommendations
+- Implement segment-specific pricing strategies
+- Optimize resource allocation based on booking patterns
+- Develop targeted marketing campaigns per segment
+
+## Project Structure
+```
+submission/
+├── [Clustering]_Submission_Akhir_BMLP_Malikus_Syafaadi_Nurfaza.ipynb    # Clustering analysis
+├── [Klasifikasi]_Submission_Akhir_BMLP_Malikus_Syafaadi_Nurfaza.ipynb   # Classification analysis
+├── clustering_results.csv      # Clustering output
+├── hotel_bookings.csv         # Original dataset
+├── requirements.txt           # Project dependencies
+├── LICENSE                    # MIT License
+└── README.md                  # Project documentation
+```
+
+## Technical Requirements
+- Python 3.7+
+- Key Dependencies:
+  ```
+  numpy>=1.21.0
+  pandas>=1.3.0
+  scikit-learn>=1.0.0
+  matplotlib>=3.4.0
+  seaborn>=0.11.0
+  jupyter>=1.0.0
+  notebook>=6.4.0
+  ```
+
+## Installation and Usage
+
+1. Clone the repository:
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/hotel-booking-classification.git
+git clone [repository-url]
+```
 
-# Navigate to project directory
-cd hotel-booking-classification
+2. Create and activate virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
 
-# Install required packages
+3. Install dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-## Dataset Description 📋
-
-The Hotel Bookings dataset includes various features:
-
-| Feature | Description |
-|---------|-------------|
-| Lead Time | Days between booking and arrival |
-| Arrival Date | Check-in date |
-| Stay Duration | Length of stay |
-| Guest Type | Type of booking guest |
-| Booking Channel | Booking platform/method |
-
-## Usage 💻
-
-```python
-# Example usage of the classification model
-from hotel_booking import HotelBookingClassifier
-
-# Initialize classifier
-classifier = HotelBookingClassifier()
-
-# Train model
-classifier.train(X_train, y_train)
-
-# Make predictions
-predictions = classifier.predict(X_test)
+4. Run Jupyter notebooks:
+```bash
+jupyter notebook
 ```
 
-## Project Structure 📁
-
-```
-hotel-booking-classification/
-├── data/
-│   ├── raw/
-│   └── processed/
-├── models/
-│   ├── random_forest/
-│   ├── logistic_regression/
-│   └── svm/
-├── notebooks/
-│   └── analysis.ipynb
-├── src/
-│   ├── preprocessing/
-│   ├── training/
-│   └── evaluation/
-├── tests/
-├── README.md
-├── requirements.txt
-└── LICENSE
-```
-
-## Contributing 🤝
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## Author 👨‍💻
-
+## Author
 **Malikus Syafaadi Nurfaza**
-- GitHub: [@Malikusfz](https://https://github.com/Malikusfz)
+- GitHub: [@Malikusfz](https://github.com/Malikusfz)
 - LinkedIn: [Malikus Syafaadi Nurfaza](https://www.linkedin.com/in/malikussyafaadinurfaza/)
 
-## License 📄
-
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments 🙏
-
-- Thanks to Dicoding and IDCamp for the learning opportunity
-- Special thanks to the scikit-learn community for their excellent documentation
-- Hotel Bookings dataset providers for making this analysis possible
-
----
-<p align="center">Made with ❤️ by Malikus Syafaadi Nurfaza</p>
+## Acknowledgments
+- Dicoding and IDCamp for the learning opportunity
+- Hotel Bookings dataset providers
+- scikit-learn community for excellent documentation
